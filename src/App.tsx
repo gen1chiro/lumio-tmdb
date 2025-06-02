@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react"
-import { Movie } from "./types/types.ts"
+import type { Movie } from './types/types.ts'
 
 function App() {
   const [movies, setMovies] = useState<Movie[] | []>([])
