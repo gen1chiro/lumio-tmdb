@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react"
-import type { Movie } from './types/types.ts'
+import { NavLink } from "react-router";
+import type { Movie } from '../types/types.ts'
 
-function App() {
+function MainLayout() {
   const [movies, setMovies] = useState<Movie[] | []>([])
   const inputRef = useRef<HTMLInputElement | null>(null)
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -35,6 +36,30 @@ function App() {
 
   return (
     <div>
+      <NavLink
+          to="/movies"
+          state={{
+            category: "trending"
+          }}
+      >
+        Trending
+      </NavLink>
+      <NavLink
+          to="/movies"
+          state={{
+            category: "popular"
+          }}
+      >
+        Popular
+      </NavLink>
+      <NavLink
+          to="/movies"
+          state={{
+            category: "top rated"
+          }}
+      >
+        Top Rated
+      </NavLink>
       <input ref={inputRef}
              type='text'
              onKeyDown={handleKeyDown}
@@ -44,4 +69,4 @@ function App() {
   )
 }
 
-export default App
+export default MainLayout
