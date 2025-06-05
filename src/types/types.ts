@@ -23,7 +23,6 @@ export type MovieList = {
     top_rated: Movie[]
 }
 
-export type MovieContextType = {
-    movies: MovieList | null
-    setMovies: React.Dispatch<React.SetStateAction<MovieList | null>>
+export type CategoryMovieTileProps = {
+    movie: Movie
 }

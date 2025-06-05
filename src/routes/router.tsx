@@ -5,7 +5,7 @@ import MovieDetail from "../pages/MovieDetail.tsx";
 import TrendingMovies from "../pages/TrendingMovies.tsx";
 import PopularMovies from "../pages/PopularMovies.tsx";
 import TopRatedMovies from "../pages/TopRatedMovies.tsx";
-import { trendingLoader, popularLoader, topRatedLoader } from "../utils/api.ts";
+import { trendingLoader, popularLoader, topRatedLoader, movieDetailLoader } from "../utils/api.ts";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -15,7 +15,7 @@ const router = createBrowserRouter(
                 <Route index element={<TrendingMovies />} loader={trendingLoader}/>
                 <Route path="popular" element={<PopularMovies />} loader={popularLoader}/>
                 <Route path="top_rated" element={<TopRatedMovies />} loader={topRatedLoader}/>
-                <Route path=":id" element={<MovieDetail />}/>
+                <Route path=":id" element={<MovieDetail />} loader={movieDetailLoader}/>
             </Route>
         </>
     )

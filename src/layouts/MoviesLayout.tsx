@@ -3,7 +3,6 @@ import React from "react";
 
 function MoviesLayout() {
 
-
     return (
         <>
             <NavLink to=".">

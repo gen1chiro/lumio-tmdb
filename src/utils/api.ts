@@ -51,3 +51,7 @@ export const topRatedLoader = async (): Promise<Movie[]> => {
     const data = await getData("movie/top_rated?page=1")
     return data.results;
 }
+
+export const movieDetailLoader = async ({ params }): Promise<Movie> => {
+    return await getData(`movie/${params.id}?`)
+}
