@@ -1,10 +1,11 @@
-import { useLoaderData } from "react-router";
-import type { Movie, CastResponse } from "../types/types.ts";
+import {Link, useRouteLoaderData} from "react-router";
+import type {Movie, CastResponse, Review} from "../types/types.ts";
+import ReviewTile from "../components/ReviewTile.tsx";
 
 function MovieDetail() {
-    const movieDetails: { movie: Movie; cast: CastResponse } = useLoaderData()
+    const movieDetails: { movie: Movie; cast: CastResponse; reviews: Review[] } =  useRouteLoaderData("movie-detail")
     const { original_title, overview, poster_path, release_date, genres, backdrop_path } = movieDetails.movie
-    const { cast } = movieDetails
+    const { cast , reviews} = movieDetails
     const castInfo = cast.cast.map(({name, profile_path}) => (
         {
             name,
@@ -51,9 +52,18 @@ function MovieDetail() {
                 <div className='flex overflow-x-auto overflow-y-hidden gap-4 pb-2 scrollbar-hide'>
                     {castElements}
                 </div>
-                {/* Fade overlay */}
-                <div
-                    className='absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'></div>
+                <div className='absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'></div>
+            </div>
+            <div className="w-full md:w-4/6 xl:w-3/6 mt-8">
+                <Link to="reviews"
+                      className="w-full font-semibold hover:underline mt-4"
+                >
+                    Reviews<span className="font-normal">({reviews.length})</span>
+                </Link>
+                {reviews.length > 0 ?
+                    <ReviewTile review={reviews[0]}/> :
+                    <div className='w-full bg-gray-100 rounded-lg h-10 flex items-center justify-center text-gray-400 text-sm'>No reviews Available</div>
+                }
             </div>
         </div>
     )

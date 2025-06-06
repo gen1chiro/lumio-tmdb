@@ -1,7 +1,8 @@
-import { createBrowserRouter, createRoutesFromElements, Route} from "react-router";
+import {createBrowserRouter, createRoutesFromElements, Outlet, Route} from "react-router";
 import MainLayout from "../layouts/MainLayout.tsx";
 import MoviesLayout from "../layouts/MoviesLayout.tsx";
 import MovieDetail from "../pages/MovieDetail.tsx";
+import MovieReviews from "../pages/MovieReviews.tsx";
 import TrendingMovies from "../pages/TrendingMovies.tsx";
 import PopularMovies from "../pages/PopularMovies.tsx";
 import TopRatedMovies from "../pages/TopRatedMovies.tsx";
@@ -15,7 +16,10 @@ const router = createBrowserRouter(
                 <Route index element={<TrendingMovies />} loader={trendingLoader}/>
                 <Route path="popular" element={<PopularMovies />} loader={popularLoader}/>
                 <Route path="top_rated" element={<TopRatedMovies />} loader={topRatedLoader}/>
-                <Route path=":id" element={<MovieDetail />} loader={movieDetailLoader}/>
+                <Route path=":id" id="movie-detail" element={<Outlet />} loader={movieDetailLoader}>
+                    <Route index element={<MovieDetail />} />
+                    <Route path="reviews" element={<MovieReviews />} />
+                </Route>
             </Route>
         </>
     )

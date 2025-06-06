@@ -1,4 +1,4 @@
-import type { Movie, MovieList, CastResponse } from "../types/types.ts";
+import type {Movie, MovieList, CastResponse, Review} from "../types/types.ts";
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
@@ -52,15 +52,16 @@ export const topRatedLoader = async (): Promise<Movie[]> => {
     return data.results;
 }
 
-export const movieDetailLoader = async ({ params }): Promise<{ movie: Movie; cast: CastResponse }> => {
+export const movieDetailLoader = async ({ params }): Promise<{ movie: Movie; cast: CastResponse, reviews: Review[] }> => {
     const movieId = params.id;
 
-    const [movie, cast] = await Promise.all([
+    const [movie, cast, reviews] = await Promise.all([
         getData(`movie/${movieId}?`),
-        getData(`movie/${movieId}/credits?`)
+        getData(`movie/${movieId}/credits?`),
+        getData(`movie/${movieId}/reviews?`)
     ]);
 
-    return { movie, cast };
+    return { movie, cast, reviews: reviews.results };
 }
 
 export const genreMap: Record<number, string> = {

@@ -51,3 +51,20 @@ export type CastResponse = {
     cast: CastMember[];
     crew: CrewMember[];
 };
+
+interface AuthorDetails {
+    name: string;
+    username: string;
+    avatar_path: string | null;
+    rating: number | null;
+}
+
+export interface Review {
+    author: string;
+    author_details: AuthorDetails;
+    content: string;
+    created_at: string;
+    updated_at: string;
+    id: string;
+    url: string;
+}
