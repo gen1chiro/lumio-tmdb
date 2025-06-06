@@ -13,7 +13,7 @@ function CategoryMovieTile({ movie }: CategoryMovieTileProps) {
 
     return (
         <Link to={`/movies/${id}`}
-            className='bg-white hover:bg-gray-200 flex flex-col items-center px-4 pb-4 pt-2 rounded-3xl text-gray-500 group'
+            className='bg-white hover:bg-gray-200 flex flex-col items-center px-4 pb-4 pt-2 rounded-3xl text-gray-400 text-sm group'
         >
             <div className='w-full flex justify-between'>
                 <h1 className='truncate'>{original_title}</h1>

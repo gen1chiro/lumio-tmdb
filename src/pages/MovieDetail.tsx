@@ -1,24 +1,60 @@
 import { useLoaderData } from "react-router";
-import type { Movie } from "../types/types.ts";
+import type { Movie, CastResponse } from "../types/types.ts";
 
 function MovieDetail() {
-    const movie: Movie = useLoaderData()
-    const { original_title, overview, poster_path, release_date, genres } = movie
+    const movieDetails: { movie: Movie; cast: CastResponse } = useLoaderData()
+    const { original_title, overview, poster_path, release_date, genres, backdrop_path } = movieDetails.movie
+    const { cast } = movieDetails
+    const castInfo = cast.cast.map(({name, profile_path}) => (
+        {
+            name,
+            profile_path
+        }
+    )).slice(0, 10)
+
     const releaseYear = release_date.split("-")[0]
 
     const genresToShow = genres.map(genre => genre.name).slice(0, 2).join(" - ")
 
+    const castElements = castInfo.map(({name, profile_path}, index) => (
+        <div key={index} className='flex-shrink-0'>
+            <img src={`https://image.tmdb.org/t/p/w185${profile_path}`} alt={name}
+                className='aspect-[2/3] w-28 rounded-lg shadow'
+            />
+            <h1 className='text-sm truncate w-24'>{name}</h1>
+        </div>
+    ))
+
     return (
-        <div className='mt-16 w-5/6 sm:w-11/12 max-w-7xl mx-auto bg-white flex flex-col items-center rounded-2xl text-gray-600 p-4'>
+        <div
+            className='relative mt-24 w-5/6 sm:w-11/12 max-w-7xl mx-auto bg-white flex flex-col gap-y-3 items-center rounded-2xl text-gray-600 p-4'>
             <div className='w-full flex justify-between'>
                 <h1>{original_title}</h1>
                 <h1>{releaseYear}</h1>
             </div>
-            <h1 className='fixed opacity-0 md:opacity-100'>{genresToShow}</h1>
-            <img src={`https://image.tmdb.org/t/p/w342${poster_path}`} alt={original_title}
-                className='aspect-[2/3] object-cover w-56 mt-8 rounded-2xl shadow-2xl '
-            />
-            <h2 className='text-center text-sm w-4/6 xl:w-2/6 my-4'>{overview}</h2>
+            <h1 className='absolute opacity-0 md:opacity-100'>{genresToShow}</h1>
+            <div className='relative w-full flex justify-center rounded-2xl overflow-hidden'
+                 style={{
+                     backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${backdrop_path})`,
+                     backgroundSize: 'cover',
+                     backgroundPosition: 'center',
+                 }}
+            >
+                <div className='absolute inset-0 bg-white opacity-60'></div>
+                <img src={`https://image.tmdb.org/t/p/w342${poster_path}`} alt={original_title}
+                     className='relative z-10 aspect-[2/3] object-cover w-56 my-6 rounded-2xl shadow-2xl '
+                />
+            </div>
+            <h2 className='text-center text-sm w-5/6 md:w-4/6 xl:w-3/6 my-4'>{overview}</h2>
+            <h1 className='w-full md:w-4/6 xl:w-3/6 font-semibold'>Cast</h1>
+            <div className='w-full md:w-4/6 xl:w-3/6 relative'>
+                <div className='flex overflow-x-auto overflow-y-hidden gap-4 pb-2 scrollbar-hide'>
+                    {castElements}
+                </div>
+                {/* Fade overlay */}
+                <div
+                    className='absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'></div>
+            </div>
         </div>
     )
 }

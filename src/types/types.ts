@@ -26,3 +26,28 @@ export type MovieList = {
 export type CategoryMovieTileProps = {
     movie: Movie
 }
+
+export type CastMember = {
+    id: number;
+    name: string;
+    character: string;
+    profile_path: string | null;
+    cast_id: number;
+    credit_id: string;
+    order: number;
+};
+
+export type CrewMember = {
+    id: number;
+    name: string;
+    job: string;
+    department: string;
+    credit_id: string;
+    profile_path: string | null;
+};
+
+export type CastResponse = {
+    id: number;
+    cast: CastMember[];
+    crew: CrewMember[];
+};
