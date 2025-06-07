@@ -1,6 +1,7 @@
 import {Link, useRouteLoaderData} from "react-router";
 import type {Movie, CastResponse, Review} from "../types/types.ts";
 import ReviewTile from "../components/ReviewTile.tsx";
+import default_profile from "../assets/default_profile.jpg";
 
 function MovieDetail() {
     const movieDetails: { movie: Movie; cast: CastResponse; reviews: Review[] } =  useRouteLoaderData("movie-detail")
@@ -19,8 +20,11 @@ function MovieDetail() {
 
     const castElements = castInfo.map(({name, profile_path}, index) => (
         <div key={index} className='flex-shrink-0'>
-            <img src={`https://image.tmdb.org/t/p/w185${profile_path}`} alt={name}
-                className='aspect-[2/3] w-28 rounded-lg shadow'
+            <img src={profile_path ?
+                `https://image.tmdb.org/t/p/w185${profile_path}` :
+                 default_profile
+            } alt={name}
+                className='aspect-[2/3] w-28 rounded-lg shadow object-cover'
             />
             <h1 className='text-sm truncate w-24'>{name}</h1>
         </div>
