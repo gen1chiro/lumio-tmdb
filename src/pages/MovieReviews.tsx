@@ -20,7 +20,7 @@ function MovieReviews() {
                 />
                 <h1 className='w-full text-center'>{original_title}</h1>
             </div>
-            <div className='flex-1 m-8 flex flex-col gap-4'>
+            <div className='flex-1 min-w-0 p-8 flex flex-col gap-4'>
                 <h1 className='font-semibold text-lg'>Reviews</h1>
                 {reviewElements}
             </div>

@@ -6,7 +6,7 @@ import default_profile from "../assets/default_profile.jpg";
 function MovieDetail() {
     const movieDetails: { movie: Movie; cast: CastResponse; reviews: Review[] } =  useRouteLoaderData("movie-detail")
     const { original_title, overview, poster_path, release_date, genres, backdrop_path } = movieDetails.movie
-    const { cast , reviews} = movieDetails
+    const { cast , reviews, similar} = movieDetails
     const castInfo = cast.cast.map(({name, profile_path}) => (
         {
             name,
@@ -28,6 +28,17 @@ function MovieDetail() {
             />
             <h1 className='text-sm truncate w-24'>{name}</h1>
         </div>
+    ))
+
+    const similarMovieElements = similar.slice(0, 10).map(({id, original_title, poster_path}, index) => (
+        <Link key={index} to={`/movies/${id}`} className='flex-shrink-0'>
+            <img
+                src={`https://image.tmdb.org/t/p/w185${poster_path}`}
+                alt={original_title}
+                className='aspect-[2/3] w-28 rounded-lg shadow object-cover'
+            />
+            <h1 className='text-sm truncate w-24'>{original_title}</h1>
+        </Link>
     ))
 
     return (
@@ -56,7 +67,8 @@ function MovieDetail() {
                 <div className='flex overflow-x-auto overflow-y-hidden gap-4 pb-2 scrollbar-hide'>
                     {castElements}
                 </div>
-                <div className='absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'></div>
+                <div
+                    className='absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'></div>
             </div>
             <div className="w-full md:w-4/6 xl:w-3/6 mt-8">
                 <Link to="reviews"
@@ -66,8 +78,18 @@ function MovieDetail() {
                 </Link>
                 {reviews.length > 0 ?
                     <ReviewTile review={reviews[0]}/> :
-                    <div className='w-full bg-gray-100 rounded-lg h-10 flex items-center justify-center text-gray-400 text-sm'>No reviews Available</div>
+                    <div
+                        className='w-full bg-gray-100 rounded-lg h-10 flex items-center justify-center text-gray-400 text-sm'>No
+                        reviews Available</div>
                 }
+            </div>
+            <h1 className='w-full md:w-4/6 xl:w-3/6 mt-6 font-semibold'>Similar Movies</h1>
+            <div className='w-full md:w-4/6 xl:w-3/6 relative'>
+                <div className='flex overflow-x-auto overflow-y-hidden gap-4 pb-2 scrollbar-hide'>
+                    {similarMovieElements}
+                </div>
+                <div
+                    className='absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'></div>
             </div>
         </div>
     )

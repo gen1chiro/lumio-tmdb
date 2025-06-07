@@ -23,7 +23,7 @@ function CategoryMovieTile({ movie }: CategoryMovieTileProps) {
                 className='aspect-[2/3] object-cover w-48 mt-8 rounded-2xl shadow-2xl group-hover:scale-[102%] transition-all ease-in-out'
             />
             <div className='w-full mt-8 flex justify-between'>
-                <h1>{genresToShow}</h1>
+                <h1 className='truncate'>{genresToShow}</h1>
                 <h1 className='text-md text-black group-hover:underline'>View Details</h1>
             </div>
         </Link>

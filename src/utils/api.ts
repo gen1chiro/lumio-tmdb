@@ -52,16 +52,17 @@ export const topRatedLoader = async (): Promise<Movie[]> => {
     return data.results;
 }
 
-export const movieDetailLoader = async ({ params }): Promise<{ movie: Movie; cast: CastResponse, reviews: Review[] }> => {
+export const movieDetailLoader = async ({ params }): Promise<{ movie: Movie; cast: CastResponse, reviews: Review[], similar: Movie[] }> => {
     const movieId = params.id;
 
-    const [movie, cast, reviews] = await Promise.all([
+    const [movie, cast, reviews, similar] = await Promise.all([
         getData(`movie/${movieId}?`),
         getData(`movie/${movieId}/credits?`),
-        getData(`movie/${movieId}/reviews?`)
+        getData(`movie/${movieId}/reviews?`),
+        getData(`movie/${movieId}/similar?`)
     ]);
 
-    return { movie, cast, reviews: reviews.results };
+    return { movie, cast, reviews: reviews.results, similar: similar.results };
 }
 
 export const genreMap: Record<number, string> = {
