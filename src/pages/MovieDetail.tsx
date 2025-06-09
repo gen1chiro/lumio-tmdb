@@ -4,7 +4,7 @@ import ReviewTile from "../components/ReviewTile.tsx";
 import default_profile from "../assets/default_profile.jpg";
 
 function MovieDetail() {
-    const movieDetails: { movie: Movie; cast: CastResponse; reviews: Review[] } =  useRouteLoaderData("movie-detail")
+    const movieDetails: { movie: Movie; cast: CastResponse; reviews: Review[], similar: Movie[] } =  useRouteLoaderData("movie-detail")
     const { original_title, overview, poster_path, release_date, genres, backdrop_path } = movieDetails.movie
     const { cast , reviews, similar} = movieDetails
     const castInfo = cast.cast.map(({name, profile_path}) => (
@@ -32,11 +32,14 @@ function MovieDetail() {
 
     const similarMovieElements = similar.slice(0, 10).map(({id, original_title, poster_path}, index) => (
         <Link key={index} to={`/movies/${id}`} className='flex-shrink-0'>
-            <img
-                src={`https://image.tmdb.org/t/p/w185${poster_path}`}
-                alt={original_title}
-                className='aspect-[2/3] w-28 rounded-lg shadow object-cover'
-            />
+            {poster_path ?
+                <img
+                    src={`https://image.tmdb.org/t/p/w185${poster_path}`}
+                    alt={original_title}
+                    className='aspect-[2/3] w-28 rounded-lg shadow object-cover'
+                /> :
+                <div className='aspect-[2/3] bg-gray-100 w-28 rounded-lg shadow'></div>
+            }
             <h1 className='text-sm truncate w-24'>{original_title}</h1>
         </Link>
     ))
