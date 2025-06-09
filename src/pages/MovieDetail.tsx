@@ -4,9 +4,14 @@ import ReviewTile from "../components/ReviewTile.tsx";
 import default_profile from "../assets/default_profile.jpg";
 
 function MovieDetail() {
-    const movieDetails: { movie: Movie; cast: CastResponse; reviews: Review[], similar: Movie[] } =  useRouteLoaderData("movie-detail")
-    const { original_title, overview, poster_path, release_date, genres, backdrop_path } = movieDetails.movie
-    const { cast , reviews, similar} = movieDetails
+    const movieDetails: {
+        movie: Movie;
+        cast: CastResponse;
+        reviews: Review[],
+        similar: Movie[]
+    } = useRouteLoaderData("movie-detail")
+    const {original_title, overview, poster_path, release_date, genres, backdrop_path} = movieDetails.movie
+    const {cast, reviews, similar} = movieDetails
     const castInfo = cast.cast.map(({name, profile_path}) => (
         {
             name,
@@ -18,31 +23,41 @@ function MovieDetail() {
 
     const genresToShow = genres.map(genre => genre.name).slice(0, 2).join(" - ")
 
-    const castElements = castInfo.map(({name, profile_path}, index) => (
-        <div key={index} className='flex-shrink-0'>
-            <img src={profile_path ?
-                `https://image.tmdb.org/t/p/w185${profile_path}` :
-                 default_profile
-            } alt={name}
-                className='aspect-[2/3] w-28 rounded-lg shadow object-cover'
-            />
-            <h1 className='text-sm truncate w-24'>{name}</h1>
+    const castElements = castInfo.length > 0 ?
+        castInfo.map(({name, profile_path}, index) => (
+            <div key={index} className='flex-shrink-0'>
+                <img src={profile_path ?
+                    `https://image.tmdb.org/t/p/w185${profile_path}` :
+                    default_profile
+                } alt={name}
+                     className='aspect-[2/3] w-28 rounded-lg shadow object-cover'
+                />
+                <h1 className='text-sm truncate w-24'>{name}</h1>
+            </div>
+        )) :
+        <div
+            className='w-full bg-gray-100 rounded-lg h-10 flex items-center justify-center text-gray-400 text-sm'>
+            No cast available
         </div>
-    ))
 
-    const similarMovieElements = similar.slice(0, 10).map(({id, original_title, poster_path}, index) => (
-        <Link key={index} to={`/movies/${id}`} className='flex-shrink-0'>
-            {poster_path ?
-                <img
-                    src={`https://image.tmdb.org/t/p/w185${poster_path}`}
-                    alt={original_title}
-                    className='aspect-[2/3] w-28 rounded-lg shadow object-cover'
-                /> :
-                <div className='aspect-[2/3] bg-gray-100 w-28 rounded-lg shadow'></div>
-            }
-            <h1 className='text-sm truncate w-24'>{original_title}</h1>
-        </Link>
-    ))
+
+    const similarMovieElements = similar.length > 0 ?
+        similar.slice(0, 10).map(({id, original_title, poster_path}, index) => (
+            <Link key={index} to={`/movies/${id}`} className='flex-shrink-0'>
+                {poster_path ?
+                    <img
+                        src={`https://image.tmdb.org/t/p/w185${poster_path}`}
+                        alt={original_title}
+                        className='aspect-[2/3] w-28 rounded-lg shadow object-cover'
+                    /> :
+                    <div className='aspect-[2/3] bg-gray-100 w-28 rounded-lg shadow'></div>
+                }
+                <h1 className='text-sm truncate w-24'>{original_title}</h1>
+            </Link>)) :
+        <div
+            className='w-full bg-gray-100 rounded-lg h-10 flex items-center justify-center text-gray-400 text-sm'>
+            No similar movies available
+        </div>
 
     return (
         <div
@@ -60,9 +75,12 @@ function MovieDetail() {
                  }}
             >
                 <div className='absolute inset-0 bg-white opacity-60'></div>
-                <img src={`https://image.tmdb.org/t/p/w342${poster_path}`} alt={original_title}
-                     className='relative z-10 aspect-[2/3] object-cover w-56 my-6 rounded-2xl shadow-2xl '
-                />
+                {poster_path ?
+                    <img src={`https://image.tmdb.org/t/p/w342${poster_path}`} alt={original_title}
+                         className='relative z-10 aspect-[2/3] object-cover w-56 my-6 rounded-2xl shadow-2xl'
+                    /> :
+                    <div className='relative z-10 aspect-[2/3] w-56 my-6 rounded-2xl shadow-2xl'></div>
+                }
             </div>
             <h2 className='text-center text-sm w-5/6 md:w-4/6 xl:w-3/6 my-4'>{overview}</h2>
             <h1 className='w-full md:w-4/6 xl:w-3/6 font-semibold'>Cast</h1>
@@ -82,8 +100,9 @@ function MovieDetail() {
                 {reviews.length > 0 ?
                     <ReviewTile review={reviews[0]}/> :
                     <div
-                        className='w-full bg-gray-100 rounded-lg h-10 flex items-center justify-center text-gray-400 text-sm'>No
-                        reviews Available</div>
+                        className='w-full bg-gray-100 rounded-lg h-10 flex items-center justify-center text-gray-400 text-sm'>
+                        No reviews available
+                    </div>
                 }
             </div>
             <h1 className='w-full md:w-4/6 xl:w-3/6 mt-6 font-semibold'>Similar Movies</h1>
