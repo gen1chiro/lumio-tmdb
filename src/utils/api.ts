@@ -24,7 +24,8 @@ export const fetchMovies = async (): Promise<MovieList> => {
 
 export const searchMovies = async (query: string): Promise<Movie[]> => {
     try {
-        const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}`)
+        console.log(encodeURIComponent(query))
+        const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}&page=1`)
 
         if (!res.ok) throw new Error(`API error: ${res.status}`)
 
@@ -49,7 +50,13 @@ export const popularLoader = async (): Promise<Movie[]> => {
 
 export const topRatedLoader = async (): Promise<Movie[]> => {
     const data = await getData("movie/top_rated?page=1")
-    return data.results;
+    return data.results
+}
+
+export const searchMovieLoader = async ({ params }): Promise<Movie[]> => {
+    const query = params.query
+    const data = await getData(`search/movie?query=${query}`)
+    return data.results
 }
 
 export const movieDetailLoader = async ({ params }): Promise<{ movie: Movie; cast: CastResponse, reviews: Review[], similar: Movie[] }> => {

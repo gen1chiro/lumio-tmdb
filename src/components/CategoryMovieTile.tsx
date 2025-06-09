@@ -19,9 +19,12 @@ function CategoryMovieTile({ movie }: CategoryMovieTileProps) {
                 <h1 className='truncate'>{original_title}</h1>
                 <h1>{releaseYear}</h1>
             </div>
-            <img src={`https://image.tmdb.org/t/p/w342${poster_path}`} alt={original_title}
-                className='aspect-[2/3] object-cover w-48 mt-8 rounded-2xl shadow-2xl group-hover:scale-[102%] transition-all ease-in-out'
-            />
+            {poster_path ?
+                <img src={`https://image.tmdb.org/t/p/w342${poster_path}`} alt={original_title}
+                                className='aspect-[2/3] object-cover w-48 mt-8 rounded-2xl shadow-2xl group-hover:scale-[102%] transition-all ease-in-out'
+                /> :
+                <div className='aspect-[2/3] w-48 mt-8 rounded-2xl shadow-2xl group-hover:scale-[102%] transition-all ease-in-out'></div>
+            }
             <div className='w-full mt-8 flex justify-between'>
                 <h1 className='truncate'>{genresToShow}</h1>
                 <h1 className='text-md text-black group-hover:underline'>View Details</h1>
