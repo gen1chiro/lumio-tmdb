@@ -4,7 +4,7 @@ import { useDebounce } from "../hooks/useDebounce.ts";
 import { searchMovies } from "../utils/api.ts";
 import { Link, useNavigate } from "react-router";
 
-function MovieSearch() {
+function MovieSearch({variation}: {variation: 'main' | 'movie'}) {
     const [searchInput, setSearchInput] = useState('')
     const [searchSuggestions, setSearchSuggestions] = useState<Movie[]>([])
     const [isLoading, setIsLoading] = useState(false)
@@ -39,7 +39,10 @@ function MovieSearch() {
     const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter" && debouncedSearch.trim()) {
             handleSelectMovie()
-            navigate(`search/${encodeURIComponent(debouncedSearch.trim())}`);
+            navigate(variation === 'movie' ?
+                `search/${encodeURIComponent(debouncedSearch.trim())}` :
+                `movies/search/${encodeURIComponent(debouncedSearch.trim())}`
+            );
         }
     }
 

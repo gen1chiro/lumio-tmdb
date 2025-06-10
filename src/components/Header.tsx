@@ -1,7 +1,7 @@
-import { Link, NavLink } from "react-router";
+import {Link, NavLink} from "react-router";
 import MovieSearch from "./MovieSearch.tsx";
 
-function MovieHeader() {
+function Header({variation}: {variation: 'main' | 'movie'}) {
 
     return (
         <>
@@ -15,19 +15,19 @@ function MovieHeader() {
                             <g><polygon points="384.643,429.085 105.357,149.797 105.357,0 0,0 0,490 490,490 490,0 384.643,0 	"/></g>
                         </svg>
                     </Link>
-                    <NavLink to="." end
+                    <NavLink to={variation === 'main' ? 'movies' : '.'} end
                              className={({isActive}) => `hover:text-gray-900 hover:scale-105 transition-all ease-in-out duration-200 ${
                                  isActive ? "font-bold text-black" : "text-gray-600"}`}
                     >
                         Trending
                     </NavLink>
-                    <NavLink to="popular"
+                    <NavLink to={variation === 'main' ? 'movies/popular' : 'popular'}
                              className={({isActive}) => `hover:text-gray-900 hover:scale-105 transition-all ease-in-out duration-200 ${
                                  isActive ? "font-bold text-black " : "text-gray-600"}`}
                     >
                         Popular
                     </NavLink>
-                    <NavLink to="top_rated"
+                    <NavLink to={variation === 'main' ? 'movies/top_rated' : 'top_rated'}
                              className={({isActive}) => `hover:text-gray-900 hover:scale-105 transition-all ease-in-out duration-200 ${
                                  isActive ? "font-bold text-black" : "text-gray-600"}`}
                     >
@@ -37,16 +37,16 @@ function MovieHeader() {
 
                 {/* desktop search */}
                 <div className='hidden sm:block w-60 md:w-80 relative'>
-                    <MovieSearch />
+                    <MovieSearch variation={variation}/>
                 </div>
             </header>
 
             {/* mobile search */}
             <div className='sm:hidden w-5/6 relative mx-auto mt-22 p-2 z-50 rounded-xl bg-white shadow-md'>
-                <MovieSearch />
+                <MovieSearch variation={variation}/>
             </div>
         </>
     )
 }
 
-export default MovieHeader
+export default Header

@@ -1,12 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router";
-import MovieHeader from "../components/MovieHeader.tsx";
+import Header from "../components/Header.tsx";
 
 function MoviesLayout() {
 
     return (
         <>
-            <MovieHeader />
+            <Header variation='movie' />
             <Outlet/>
         </>
     )
