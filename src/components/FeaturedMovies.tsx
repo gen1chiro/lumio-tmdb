@@ -8,7 +8,7 @@ function FeaturedMovies({movies}: {movies: MovieList}) {
         <div className='w-full flex flex-col gap-8 items-center p-1 sm:p-4'>
             <FeaturedMovieSection movies={trending} link='/movies' label='Trending' />
             <FeaturedMovieSection movies={popular} link='/movies/popular' label='Popular' />
-            <FeaturedMovieSection movies={top_rated} link='movies/top_rated' label='top_rated' />
+            <FeaturedMovieSection movies={top_rated} link='movies/top_rated' label='Top Rated' />
         </div>
     )
 }
