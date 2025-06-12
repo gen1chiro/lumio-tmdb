@@ -54,7 +54,7 @@ function FeaturedMovies({movies}: {movies: MovieList | null}) {
                     {trendingElements}
                 </div>
                 <div
-                    className='absolute top-8 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'>
+                    className='absolute top-10 right-0 w-8 h-5/6 bg-gradient-to-l from-white to-transparent pointer-events-none'>
                 </div>
             </div>
             <div className='w-full bg-white relative'>
@@ -66,7 +66,7 @@ function FeaturedMovies({movies}: {movies: MovieList | null}) {
                     {popularElements}
                 </div>
                 <div
-                    className='absolute top-8 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'>
+                    className='absolute top-10 right-0 w-8 h-5/6 bg-gradient-to-l from-white to-transparent pointer-events-none'>
                 </div>
             </div>
             <div className='w-full bg-white relative'>
@@ -78,7 +78,7 @@ function FeaturedMovies({movies}: {movies: MovieList | null}) {
                     {topRatedElements}
                 </div>
                 <div
-                    className='absolute top-8 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'>
+                    className='absolute top-10 right-0 w-8 h-5/6 bg-gradient-to-l from-white to-transparent pointer-events-none'>
                 </div>
             </div>
         </div>

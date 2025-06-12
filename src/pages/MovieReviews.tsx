@@ -13,7 +13,7 @@ function MovieReviews() {
         </div>
 
     return (
-        <div className='flex flex-wrap items-start mt-24 w-5/6 sm:w-11/12 max-w-7xl mx-auto bg-white rounded-2xl'>
+        <div className='flex flex-wrap items-start mt-4 sm:mt-24 w-11/12 max-w-7xl mx-auto bg-white rounded-2xl'>
             <div className='w-full lg:w-1/4 flex flex-col flex-shrink-0 justify-center items-center p-8'>
                 <img src={`https://image.tmdb.org/t/p/w342${poster_path}`} alt={original_title}
                      className='relative z-10 aspect-[2/3] object-cover w-60 rounded-2xl shadow-2xl '

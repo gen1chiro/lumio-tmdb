@@ -37,11 +37,11 @@ function MovieSearch({variation}: {variation: 'main' | 'movie'}) {
     }
 
     const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter" && debouncedSearch.trim()) {
+        if (e.key === "Enter" && searchInput.trim()) {
             handleSelectMovie()
             navigate(variation === 'movie' ?
-                `search/${encodeURIComponent(debouncedSearch.trim())}` :
-                `movies/search/${encodeURIComponent(debouncedSearch.trim())}`
+                `search/${encodeURIComponent(searchInput.trim())}` :
+                `movies/search/${encodeURIComponent(searchInput.trim())}`
             );
         }
     }

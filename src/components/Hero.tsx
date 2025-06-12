@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
+import {useNavigate} from "react-router";
 import type {Movie} from "../types/types.ts";
 
 function Hero({movies}: {movies: Movie[]}) {
     const [imageIndex, setImageIndex] = useState(0)
     const images = movies.map(movie => movie.backdrop_path)
+    const currentMovie = movies[imageIndex]
+    const {poster_path, original_title, overview, id} = currentMovie
+    const navigate = useNavigate()
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -17,8 +21,12 @@ function Hero({movies}: {movies: Movie[]}) {
         setImageIndex(index)
     }
 
+    const handleClick = () => {
+        navigate(`movies/${id}`)
+    }
+
     return (
-        <div className='relative w-full h-[calc(100vh-180px)] bg-red-400 rounded-xl overflow-hidden'>
+        <div className='relative w-full h-[calc(100vh-180px)] lg:h-[calc(100vh-300px)] bg-red-400 rounded-xl overflow-hidden'>
             <div className='relative w-full h-full'>
                 {images.map((img, index) => (
                     <img
@@ -31,6 +39,21 @@ function Hero({movies}: {movies: Movie[]}) {
                     />
                 ))}
                 <div className='absolute inset-0 bg-gray-700 opacity-60 z-20'></div>
+            </div>
+            <div className='absolute inset-5 sm:inset-20 z-30 flex flex-col lg:flex-row items-center justify-center gap-6'>
+                <img src={`https://image.tmdb.org/t/p/w342${poster_path}`} alt={original_title}
+                     className='z-10 aspect-[2/3] object-cover h-3/4 sm:h-auto sm:w-80 rounded-2xl shadow-2xl'
+                />
+                <div className='flex flex-col gap-2 items-center lg:items-start'>
+                    <h1 className='text-white font-semibold text-lg sm:text-3xl text-center md:text-left'>{original_title}</h1>
+                    <p className='hidden lg:block text-white font-light'>{overview}</p>
+                    <button
+                        onClick={handleClick}
+                        className='w-fit bg-white rounded-full px-4 font-light text-lg hover:scale-105 hover:bg-gray-200 transition-all ease-in-out'
+                    >
+                        details
+                    </button>
+                </div>
             </div>
             <div className='absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-30'>
                 {images.map((_, index) => (

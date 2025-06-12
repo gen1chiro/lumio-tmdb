@@ -6,7 +6,7 @@ function Header({variation}: {variation: 'main' | 'movie'}) {
     return (
         <>
             <header
-                className='w-5/6 sm:w-11/12 max-w-7xl fixed z-50 top-0 left-1/2 -translate-x-1/2 mt-4 py-4 px-6 flex justify-center sm:justify-between bg-white shadow-lg border-gray-100 border rounded-2xl'>
+                className='w-11/12 max-w-7xl fixed z-50 top-0 left-1/2 -translate-x-1/2 mt-4 py-4 px-6 flex justify-center sm:justify-between bg-white shadow-lg border-gray-100 border rounded-2xl'>
                 <nav className='flex items-center gap-6 font-light text-gray-500'>
                     <Link to="/">
                         <svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1"
@@ -42,7 +42,7 @@ function Header({variation}: {variation: 'main' | 'movie'}) {
             </header>
 
             {/* mobile search */}
-            <div className='sm:hidden w-5/6 relative mx-auto mt-22 p-2 z-50 rounded-xl bg-white shadow-md'>
+            <div className='sm:hidden w-11/12 relative mx-auto mt-22 p-2 z-40 rounded-xl bg-white shadow-md'>
                 <MovieSearch variation={variation}/>
             </div>
         </>
