@@ -15,7 +15,7 @@ function Movies() {
         <main className='pt-4 sm:pt-24 w-11/12 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1'>
             {movieElements.length > 0 ?
                 movieElements :
-                <div className='w-full bg-white rounded-xl shadow-lg h-40 flex items-center justify-center font-light text-gray-600'>No results</div>
+                <div className='w-full col-span-full bg-white rounded-xl shadow-lg h-screen flex items-center justify-center font-light text-gray-600'>No results</div>
             }
         </main>
     )

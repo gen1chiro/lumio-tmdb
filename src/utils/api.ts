@@ -56,6 +56,7 @@ export const topRatedLoader = async (): Promise<Movie[]> => {
 export const searchMovieLoader = async ({ params }): Promise<Movie[]> => {
     const query = params.query
     const data = await getData(`search/movie?query=${query}`)
+    console.log(data.results)
     return data.results
 }
 

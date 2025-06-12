@@ -4,12 +4,13 @@ import { genreMap } from "../utils/api.ts";
 
 function CategoryMovieTile({ movie }: CategoryMovieTileProps) {
     const { original_title, poster_path, id, release_date, genre_ids} = movie
-    const releaseYear = release_date.split("-")[0]
+    const releaseYear = release_date && release_date.split("-")[0]
 
-    const genresToShow = genre_ids
+    const genresToShow = genre_ids? genre_ids
         .slice(0, 2)
         .map(id => genreMap[id])
-        .join(" - ");
+        .join(" - ") :
+        ''
 
     return (
         <Link to={`/movies/${id}`}
