@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface Movie {
     adult: boolean;
     backdrop_path: string | null;

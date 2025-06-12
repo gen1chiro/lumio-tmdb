@@ -8,20 +8,6 @@ export const getData = async (endpoint: string) => {
     return res.json()
 }
 
-export const fetchMovies = async (): Promise<MovieList> => {
-    const [trending, popular, topRated] = await Promise.all([
-        getData('trending/movie/week?'),
-        getData('movie/popular?page=1'),
-        getData('movie/top_rated?page=1'),
-    ]);
-
-    return {
-        trending: trending.results,
-        popular: popular.results,
-        top_rated: topRated.results
-    };
-}
-
 export const searchMovies = async (query: string): Promise<Movie[]> => {
     try {
         console.log(encodeURIComponent(query))
@@ -35,6 +21,20 @@ export const searchMovies = async (query: string): Promise<Movie[]> => {
     } catch (error) {
         console.error('Failed to search movies:', error);
         return [];
+    }
+}
+
+export const mainLayoutLoader = async (): Promise<MovieList> => {
+    const [trending, popular, topRated] = await Promise.all([
+        getData('trending/movie/week?'),
+        getData('movie/popular?page=1'),
+        getData('movie/top_rated?page=1'),
+    ])
+
+    return {
+        trending: trending.results,
+        popular: popular.results,
+        top_rated: topRated.results
     }
 }
 

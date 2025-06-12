@@ -4,12 +4,12 @@ import MoviesLayout from "../layouts/MoviesLayout.tsx";
 import MovieDetail from "../pages/MovieDetail.tsx";
 import MovieReviews from "../pages/MovieReviews.tsx";
 import Movies from "../pages/Movies.tsx";
-import { trendingLoader, popularLoader, topRatedLoader, movieDetailLoader, searchMovieLoader } from "../utils/api.ts";
+import { mainLayoutLoader, trendingLoader, popularLoader, topRatedLoader, movieDetailLoader, searchMovieLoader } from "../utils/api.ts";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
-            <Route path="/" element={<MainLayout />} />
+            <Route path="/" element={<MainLayout />} loader={mainLayoutLoader} />
             <Route path="/movies" element={<MoviesLayout />}>
                 <Route index element={<Movies />} loader={trendingLoader}/>
                 <Route path="popular" element={<Movies />} loader={popularLoader}/>

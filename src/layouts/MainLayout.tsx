@@ -1,35 +1,19 @@
-import React, { useState, useRef, useEffect } from "react"
-import type { Movie, MovieList } from '../types/types.ts'
-import { fetchMovies, searchMovies } from "../utils/api.ts"
+import { useLoaderData } from "react-router"
+import type { MovieList } from '../types/types.ts'
 import Hero from "../components/Hero.tsx"
-import FeaturedMovies from "../components/FeaturedMovies.tsx";
-import Header from "../components/Header.tsx";
+import FeaturedMovies from "../components/FeaturedMovies.tsx"
+import Header from "../components/Header.tsx"
 
 function MainLayout() {
-    const [movies, setMovies] = useState<MovieList | null>(null)
+    const movies: MovieList = useLoaderData()
     const heroMovies = movies?.popular.slice(0, 5)
-
-    useEffect(() => {
-        const fetch = async () => {
-            setMovies(await fetchMovies())
-        }
-
-        fetch()
-    }, [])
-
 
     return (
         <>
             <Header variation='main' />
             <div className='w-11/12 max-w-7xl flex flex-col gap-6 mt-4 sm:mt-24 p-2 bg-white shadow-xl border border-gray-100 mx-auto rounded-2xl'>
-                {movies ?
-                    <Hero movies={heroMovies}/> :
-                    <div className='w-full h-[calc(100vh-180px)] bg-gray-200 animate-pulse rounded-xl'></div>
-                }
-                {movies ?
-                    <FeaturedMovies movies={movies} /> :
-                    <div className='w-full bg-gray-200 animate-pulse'></div>
-                }
+                <Hero movies={heroMovies}/>
+                <FeaturedMovies movies={movies} />
             </div>
         </>
     )
