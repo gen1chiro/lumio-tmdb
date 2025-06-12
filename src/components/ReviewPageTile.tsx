@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import default_profile from "../assets/default_profile.jpg";
+import type {Review} from "../types/types.ts";
 
-function ReviewPageTile({ review }) {
+function ReviewPageTile({ review }: {review: Review}) {
     const { author, author_details, content } = review
     const { rating, avatar_path } = author_details
     const [isExpanded, setIsExpanded] = useState<boolean>(false)

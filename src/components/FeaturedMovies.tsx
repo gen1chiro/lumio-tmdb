@@ -1,7 +1,7 @@
 import FeaturedMovieSection from "./FeaturedMovieSection.tsx"
 import type {Movie, MovieList} from "../types/types.ts"
 
-function FeaturedMovies({movies}: {movies: MovieList | null}) {
+function FeaturedMovies({movies}: {movies: MovieList}) {
     const {trending, popular, top_rated}: { trending: Movie[], popular: Movie[], top_rated: Movie[] } = movies
 
     return (
