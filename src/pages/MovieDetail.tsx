@@ -110,8 +110,8 @@ function MovieDetail() {
                 <div className='flex overflow-x-auto overflow-y-hidden gap-4 pb-2 scrollbar-hide'>
                     {similarMovieElements}
                 </div>
-                <div
-                    className='absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'></div>
+                {similar.length > 0 && <div
+                    className='absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'></div>}
             </div>
         </div>
     )
