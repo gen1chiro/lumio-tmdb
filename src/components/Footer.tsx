@@ -35,7 +35,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <h1 className='w-11/12 max-w-7xl mx-auto text-gray-300 font-thin text-sm px-8'>
+            <h1 className='w-11/12 max-w-7xl mx-auto text-gray-300 font-thin text-sm px-8 text-center sm:text-left'>
                 ©{currentYear} | Designed & Developed by{' '}
                 <a href="https://github.com/gen1chiro"
                    target="_blank"

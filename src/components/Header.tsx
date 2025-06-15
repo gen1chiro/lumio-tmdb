@@ -34,6 +34,9 @@ function Header({variation}: {variation: 'main' | 'movie'}) {
                     >
                         Top
                     </NavLink>
+                    <div className='h-full flex items-center sm:hidden'>
+                        <ThemeToggle />
+                    </div>
                 </nav>
 
                 {/* desktop search */}
@@ -44,7 +47,7 @@ function Header({variation}: {variation: 'main' | 'movie'}) {
             </header>
 
             {/* mobile search */}
-            <div className='sm:hidden w-11/12 mx-auto mt-22 p-2 z-40 rounded-xl bg-white dark:bg-zinc-800 shadow-md'>
+            <div className='sm:hidden w-11/12 mx-auto mt-22 p-2 z-40 rounded-xl bg-white dark:bg-zinc-800 border border-white dark:border-zinc-700 shadow-md'>
                 <MovieSearch variation={variation}/>
             </div>
         </>

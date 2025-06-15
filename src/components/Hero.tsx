@@ -26,7 +26,7 @@ function Hero({movies}: {movies: Movie[]}) {
     }
 
     return (
-        <div className='relative w-full h-[calc(100vh-180px)] sm:min-h-[600px] lg:h-[calc(100vh-300px)] lg:min-h-[500px] lg:max-h-[600px] bg-red-400 rounded-xl overflow-hidden'>
+        <div className='relative w-full h-[calc(100vh-180px)] sm:min-h-[600px] lg:h-[calc(100vh-300px)] lg:min-h-[500px] lg:max-h-[600px] rounded-xl overflow-hidden'>
             <div className='relative w-full h-full'>
                 {images.map((img, index) => (
                     <img

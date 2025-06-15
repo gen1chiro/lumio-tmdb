@@ -57,7 +57,7 @@ function MovieSearch({variation}: {variation: 'main' | 'movie'}) {
                    onBlur={() => setTimeout(() => setIsFocused(false), 300)}
                    className='border border-gray-200 bg-gray-100 dark:bg-zinc-700 dark:border-zinc-700 focus:outline-0 focus:ring-1 px-2 h-8 w-full text-sm font-light dark:text-gray-200 rounded-md'/>
             {isFocused && searchSuggestions.length > 0 &&
-                <div className='w-full min-h-10 max-h-80 overflow-y-auto flex flex-col mt-1 p-2 gap-4 absolute bg-white dark:bg-zinc-800 dark:text-gray-200 rounded-md shadow-lg z-30'>
+                <div className='w-full min-h-10 max-h-80 overflow-y-auto flex flex-col mt-1 p-2 gap-4 absolute bg-white dark:bg-zinc-800 dark:text-gray-200 rounded-md shadow-lg z-50'>
                     {isLoading ?
                         <div className='w-full flex flex-col gap-4'>
                             <div className='w-full h-2 bg-gray-100 animate-pulse rounded-full'></div>
