@@ -36,7 +36,7 @@ function MovieDetail() {
             </div>
         )) :
         <div
-            className='w-full bg-gray-100 rounded-lg h-10 flex items-center justify-center text-gray-400 text-sm'>
+            className='w-full bg-gray-100 dark:bg-zinc-700 rounded-lg h-10 flex items-center justify-center text-gray-400 dark:text-gray-200 text-sm'>
             No cast available
         </div>
 
@@ -55,13 +55,13 @@ function MovieDetail() {
                 <h1 className='text-sm truncate w-24'>{original_title}</h1>
             </Link>)) :
         <div
-            className='w-full bg-gray-100 rounded-lg h-10 flex items-center justify-center text-gray-400 text-sm'>
+            className='w-full bg-gray-100 dark:bg-zinc-700 rounded-lg h-10 flex items-center justify-center text-gray-400 dark:text-gray-200 text-sm'>
             No similar movies available
         </div>
 
     return (
         <div
-            className='relative mt-4 sm:mt-24 w-11/12 max-w-7xl mx-auto bg-white flex flex-col gap-y-3 items-center rounded-2xl text-gray-600 p-4'>
+            className='relative mt-4 sm:mt-24 w-11/12 max-w-7xl mx-auto bg-white dark:bg-zinc-800 flex flex-col gap-y-3 items-center rounded-2xl text-gray-600 dark:text-gray-200 p-4 border border-white dark:border-zinc-700'>
             <div className='w-full flex justify-between'>
                 <h1>{original_title}</h1>
                 <h1>{releaseYear}</h1>
@@ -88,8 +88,9 @@ function MovieDetail() {
                 <div className='flex overflow-x-auto overflow-y-hidden gap-4 pb-2 scrollbar-hide'>
                     {castElements}
                 </div>
-                <div
-                    className='absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'></div>
+                {castInfo.length > 0 &&
+                    <div className='absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white dark:from-zinc-800 to-transparent pointer-events-none'></div>
+                }
             </div>
             <div className="w-full md:w-4/6 xl:w-3/6 mt-8">
                 <Link to="reviews"
@@ -100,7 +101,7 @@ function MovieDetail() {
                 {reviews.length > 0 ?
                     <ReviewTile review={reviews[0]}/> :
                     <div
-                        className='w-full bg-gray-100 rounded-lg h-10 flex items-center justify-center text-gray-400 text-sm'>
+                        className='w-full bg-gray-100 dark:bg-zinc-700 rounded-lg h-10 flex items-center justify-center text-gray-400 dark:text-gray-200 text-sm'>
                         No reviews available
                     </div>
                 }
@@ -111,7 +112,7 @@ function MovieDetail() {
                     {similarMovieElements}
                 </div>
                 {similar.length > 0 && <div
-                    className='absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white to-transparent pointer-events-none'></div>}
+                    className='absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white dark:from-zinc-800 to-transparent pointer-events-none'></div>}
             </div>
         </div>
     )

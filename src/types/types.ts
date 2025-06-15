@@ -66,3 +66,8 @@ export interface Review {
     id: string;
     url: string;
 }
+
+export type ThemeContextType = {
+    isDarkMode: boolean
+    toggleTheme: () => void
+}

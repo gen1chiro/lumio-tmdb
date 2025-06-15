@@ -26,7 +26,7 @@ function ReviewPageTile({ review }: {review: Review}) {
     }
 
     return (
-        <div className='shadow-lg p-4 pb-2 rounded-2xl w-full border-gray-200 border'>
+        <div className='shadow-lg p-4 pb-2 rounded-2xl w-full border-gray-200 dark:border-zinc-700 border'>
             <div className='w-full'>
                 <div className='flex gap-4 items-center'>
                     <img src={avatarSrc} alt='reviewer profile photo'

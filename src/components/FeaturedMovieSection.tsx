@@ -17,16 +17,16 @@ function FeaturedMovieSection({movies, link, label}: {movies: Movie[], link: str
     ))
 
     return (
-        <div className='w-full bg-white relative'>
+        <div className='w-full bg-white dark:bg-zinc-800 relative'>
             <div className='w-full flex justify-between items-center'>
-                <h1 className='text-3xl font-bold'>{label}</h1>
-                <Link to={link} className='hover:underline'>View All</Link>
+                <h1 className='text-3xl font-bold dark:text-gray-200'>{label}</h1>
+                <Link to={link} className='hover:underline dark:text-gray-200'>View All</Link>
             </div>
             <div className='flex overflow-x-auto overflow-y-hidden gap-4 py-2 scrollbar-hide'>
                 {movieElements}
             </div>
             <div
-                className='absolute top-10 right-0 w-8 h-5/6 bg-gradient-to-l from-white to-transparent pointer-events-none'>
+                className='absolute top-10 right-0 w-8 h-5/6 bg-gradient-to-l from-white dark:from-zinc-800 to-transparent pointer-events-none'>
             </div>
         </div>
     )
