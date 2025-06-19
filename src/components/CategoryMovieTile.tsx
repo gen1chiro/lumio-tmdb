@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import type { CategoryMovieTileProps } from "../types/types.ts";
-import { genreMap } from "../utils/api.ts";
+import { genreMap } from "../utils/utils.ts";
 
 function CategoryMovieTile({ movie }: CategoryMovieTileProps) {
     const { original_title, poster_path, id, release_date, genre_ids} = movie
