@@ -4,8 +4,8 @@ function Footer() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <footer className='w-full mt-10  bg-gradient-to-br from-gray-600 via-zinc-900 to-zinc-800 min-h-48 shadow-lg text-white'>
-            <div className='flex flex-col sm:flex-row justify-between items-center gap-10 w-11/12 max-w-7xl h-5/6 mx-auto p-8'>
+        <footer className='w-full mt-auto bg-gradient-to-br from-gray-600 via-zinc-900 to-zinc-800 h-fit shadow-lg text-white'>
+            <div className='flex flex-col sm:flex-row justify-between items-center gap-10 w-11/12 max-w-7xl mx-auto p-8'>
                 <div className='h-full flex gap-2 items-center'>
                     <svg fill="#ffffff" height="25px" width="25px" version="1.1" id="Capa_1"
                          xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"

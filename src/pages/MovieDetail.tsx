@@ -61,7 +61,7 @@ function MovieDetail() {
 
     return (
         <div
-            className='relative mt-4 sm:mt-24 w-11/12 max-w-7xl mx-auto bg-white dark:bg-zinc-800 flex flex-col gap-y-3 items-center rounded-2xl text-gray-600 dark:text-gray-200 p-4 border border-white dark:border-zinc-700'>
+            className='relative mt-4 sm:mt-24 mb-10 w-11/12 max-w-7xl mx-auto bg-white dark:bg-zinc-800 flex flex-col gap-y-3 items-center rounded-2xl text-gray-600 dark:text-gray-200 p-4 border border-white dark:border-zinc-700'>
             <div className='w-full flex justify-between'>
                 <h1>{original_title}</h1>
                 <h1>{releaseYear}</h1>

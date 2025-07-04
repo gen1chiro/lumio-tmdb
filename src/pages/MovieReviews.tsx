@@ -13,7 +13,7 @@ function MovieReviews() {
         </div>
 
     return (
-        <div className='flex flex-wrap items-start mt-4 sm:mt-24 w-11/12 max-w-7xl mx-auto bg-white dark:bg-zinc-800 rounded-2xl dark:text-gray-200 border border-white dark:border-zinc-700'>
+        <div className='flex flex-wrap items-start mt-4 sm:mt-24 mb-10 w-11/12 max-w-7xl mx-auto bg-white dark:bg-zinc-800 rounded-2xl dark:text-gray-200 border border-white dark:border-zinc-700'>
             <div className='w-full lg:w-1/4 flex flex-col flex-shrink-0 justify-center items-center p-8'>
                 {poster_path ?
                     <img src={`https://image.tmdb.org/t/p/w342${poster_path}`} alt={original_title}
